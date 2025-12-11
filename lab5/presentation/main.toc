@@ -1,0 +1,10 @@
+\beamer@sectionintoc {1}{Problem Statement}{4}{0}{1}
+\beamer@sectionintoc {2}{Preprocessing and Feature Extraction}{11}{0}{2}
+\beamer@sectionintoc {3}{Classifier Model}{16}{0}{3}
+\beamer@subsectionintoc {3}{1}{Random Forest}{17}{0}{3}
+\beamer@subsectionintoc {3}{2}{Gradient Boost}{22}{0}{3}
+\beamer@subsectionintoc {3}{3}{One Vs Rest}{27}{0}{3}
+\beamer@subsectionintoc {3}{4}{Neural Network}{35}{0}{3}
+\beamer@subsectionintoc {3}{5}{Stacking Ensembler}{42}{0}{3}
+\beamer@sectionintoc {4}{Training}{45}{0}{4}
+\beamer@sectionintoc {5}{Results}{46}{0}{5}

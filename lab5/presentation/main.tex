@@ -1,0 +1,263 @@
+\documentclass[11pt]{beamer}
+\usetheme{Madrid}
+\usefonttheme{serif}
+
+\usepackage[utf8]{inputenc}
+% \usepackage[brazil]{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\usepackage{caption}
+\usepackage{siunitx}
+
+\DeclareMathOperator{\sen}{sen}
+\DeclareMathOperator{\tg}{tg}
+
+\setbeamertemplate{caption}[numbered]
+
+\author[]{Diogo Fonseca \\ Professor(s): José Valente de Oliveira \& Hélder Daniel}
+\title{From Waveforms to Bits}
+% Informe o seu email de contato no comando a seguir
+% Por exemplo, alcebiades.col@ufes.br
+\newcommand{\email}{email}
+%\setbeamercovered{transparent} 
+\setbeamertemplate{navigation symbols}{} 
+\logo{\includegraphics[scale=0.15]{imagens/ualg_tiny.png}}
+\institute[]{UALG \par MESTRADO EM ENGENHARIA INFORMÁTICA} 
+\date{10th of December, 2025}
+%\subject{}
+
+% ---------------------------------------------------------
+% Selecione um estilo de referência
+\bibliographystyle{apalike}
+
+%\bibliographystyle{abbrv}
+%\setbeamertemplate{bibliography item}{\insertbiblabel}
+% ---------------------------------------------------------
+
+% ---------------------------------------------------------
+% Incluir os slides nos quais as referências foram citadas
+%\usepackage[brazilian,hyperpageref]{backref}
+
+%\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+%\renewcommand{\backref}{}
+%\renewcommand*{\backrefalt}[4]{
+%	\ifcase #1 %
+%		Nenhuma citação no texto.%
+%	\or
+%		Citado na página #2.%
+%	\else
+%		Citado #1 vezes nas páginas #2.%
+%	\fi}%
+% ---------------------------------------------------------
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}{Table of contents}
+    \only<1>{\tableofcontents[sections={1-3}]}
+    \only<2>{\tableofcontents[sections={4-6}]}
+\end{frame}
+
+
+
+\section{Problem Statement}
+
+\begin{frame}{Problem Statement}
+	\begin{center}
+		\color{structure}
+		\bfseries\LARGE
+		Brief summary
+	\end{center}
+
+	\vspace{1.0cm}
+
+	\begin{itemize}
+		\item<2-> Identify faults in a physical system.
+		\item<3-> Classification problem.
+		\item<4-> 7 classes.
+		\item<5-> 140 000 samples total.
+		\item<6-> 20 000 samples for each class.
+		\item<7-> data is mostly abstract to humans (sound waves).
+	\end{itemize}
+\end{frame}
+
+\section{Preprocessing and Feature Extraction}
+
+\begin{frame}{Processing and Feature Extraction}
+	\begin{itemize}
+		\item<1-> Shuffling.
+		\item<2-> Labels extracted from one\_hot encoding.
+		\item<3-> Data split into training and testing.
+		\item<4-> Data was centered and scaled (mean of 0 and std dev of 1)
+		\item<5-> PCA with variance of 95\% (no analysis could be done).
+	\end{itemize}
+\end{frame}
+
+\section{Classifier Model}
+
+\begin{frame}
+    \begin{beamercolorbox}[sep=8pt,center,rounded=true,shadow=true]{title}
+        \usebeamerfont{title}\Huge\textbf{Classifier Model}
+    \end{beamercolorbox}
+\end{frame}
+
+\subsection{Random Forest}
+
+\begin{frame}{Classifier Model}
+	\begin{center}
+		\color{structure}
+		\bfseries\LARGE
+		Random Forest
+	\end{center}
+
+	\vspace{1.0cm}
+
+	\begin{itemize}
+		\item<2-> 200 decision trees.
+		\item<3-> no depth limitation.
+		\item<4-> a node must have at least 5 samples to be considered for splitting.
+		\item<5-> each leaf node must have at least 2 samples.
+	\end{itemize}
+\end{frame}
+
+\subsection{Gradient Boost}
+
+\begin{frame}{Classifier Model}
+	\begin{center}
+		\color{structure}
+		\bfseries\LARGE
+		Gradient Boost
+	\end{center}
+
+	\vspace{1.0cm}
+
+	\begin{itemize}
+		\item<2-> 200 iterations max.
+		\item<3-> learning rate of 0.1.
+		\item<4-> regularization at 0.1.
+		\item<5-> early stopping.
+	\end{itemize}
+\end{frame}
+
+\subsection{One Vs Rest}
+
+\begin{frame}{Classifier Model}
+	\begin{center}
+		\color{structure}
+		\bfseries\LARGE
+		One Vs Rest
+	\end{center}
+
+	\vspace{1.0cm}
+
+	\begin{itemize}
+		\item<2-> neural network.
+		\item<3-> 256-128 topology.
+		\item<4-> relu activation function.
+		\item<5-> daptative learning rate.
+		\item<6-> regularization of 0.0001.
+		\item<7-> 100 iterations max.
+		\item<8-> early stopping.
+	\end{itemize}
+\end{frame}
+
+\subsection{Neural Network}
+
+\begin{frame}{Classifier Model}
+	\begin{center}
+		\color{structure}
+		\bfseries\LARGE
+		Single Neural Network
+	\end{center}
+
+	\vspace{1.0cm}
+
+	\begin{itemize}
+		\item<2-> 512-256 topology.
+		\item<3-> relu activation function.
+		\item<4-> daptative learning rate.
+		\item<5-> regularization of 0.0001.
+		\item<6-> 100 iterations max.
+		\item<7-> early stopping.
+	\end{itemize}
+\end{frame}
+
+\subsection{Stacking Ensembler}
+
+\begin{frame}{Classifier Model}
+	\begin{center}
+		\color{structure}
+		\bfseries\LARGE
+		Stacking Ensembler
+	\end{center}
+
+	\vspace{1.0cm}
+
+	\begin{itemize}
+		\item<2-> logistic regression.
+		\item<3-> inputs of previous models.
+	\end{itemize}
+\end{frame}
+
+\section{Training}
+
+\begin{frame}{Training}
+	All training was done multi-threaded on 16 CPU cores.
+    \begin{table}[htb]
+        \centering
+
+		\begin{tabular}{|l|r|}
+	        \hline
+			\textbf{Classifier model} & \textbf{Time (s)} \\ \hline
+	        Random Forest		& 126	\\ \hline
+	        Gradient Boost		& 26	\\ \hline
+	        One Vs Rest			& 33	\\ \hline
+	        Neural Network		& 38	\\ \hline
+	        Stacking Ensembler	& 1		\\ \hline
+        \end{tabular}
+
+		\captionsetup{font=scriptsize}
+		\caption{Model training time.}
+    \end{table}
+\end{frame}
+
+\section{Results}
+
+\begin{frame}{Results}
+	\begin{table}[htb]
+		\centering
+
+		\begin{tabular}{|l|S|S|S|S|}
+			\hline
+			\textbf{Model} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{f1-score} \\ \hline
+			Random Forest		& 0.82	& 0.82	& 0.82	& 0.81	\\ \hline
+			Gradient Boost		& 0.87	& 0.87	& 0.87	& 0.87	\\ \hline
+			One Vs Rest			& 0.91	& 0.91	& 0.91	& 0.91	\\ \hline
+			Neural Network		& 0.90	& 0.90	& 0.90	& 0.90	\\ \hline
+			Stacking Ensembler	& 0.94	& 0.94	& 0.94	& 0.94	\\ \hline
+		\end{tabular}
+
+		\captionsetup{font=scriptsize}
+		\caption{Model testing metrics.}
+	\end{table}
+\end{frame}
+
+\begin{frame}{Results}
+	\begin{center}
+		\color{structure}
+		\bfseries\LARGE
+		Confusion Matrix
+	\end{center}
+	\centering
+	\includegraphics[width=0.5\textwidth]{imagens/confusion_matrix.png}
+\end{frame}
+
+\end{document}
